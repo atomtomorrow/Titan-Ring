@@ -2,6 +2,8 @@ name: Build APK
 on:
   push:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,7 +17,14 @@ jobs:
         with:
           gradle-version: "8.10.2"
       - run: gradle assembleDebug --no-daemon
+      - run: cp app/build/outputs/apk/debug/app-debug.apk TitanRing.apk
       - uses: actions/upload-artifact@v4
         with:
           name: TitanRing-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: TitanRing.apk
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Titan Ring build ${{ github.run_number }}
+          files: TitanRing.apk
+          make_latest: true
