@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Titan Ring</string>
+    <string name="acc_desc">Рисует светящееся кольцо вокруг фронтальной камеры. Служба не читает содержимое экрана — она нужна только для того, чтобы рисовать кольцо поверх всего, включая экран блокировки.</string>
+</resources>
