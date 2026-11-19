@@ -49,7 +49,7 @@ object Prefs {
     fun seen(c: Context): Set<String> = HashSet(sp(c).getStringSet(K_SEEN, emptySet()) ?: emptySet())
 
     fun addSeen(c: Context, pkg: String) {
-        val s = seen(c)
+        val s = HashSet(seen(c))
         if (s.add(pkg)) sp(c).edit().putStringSet(K_SEEN, s).apply()
     }
 }
